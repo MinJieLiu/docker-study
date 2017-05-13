@@ -31,20 +31,25 @@ docker images --format "{{.ID}}: {{.Repository}}"
 
 ### 理解 commit
 
-docker commit 意味着所有对镜像的操作都是黑箱操作，生成的镜像也被称为`黑箱镜像`，这样将会导致镜像极为臃肿，慎用。
+`docker commit` 意味着所有对镜像的操作都是黑箱操作，生成的镜像也被称为`黑箱镜像`，这样将会导致镜像极为臃肿，慎用。
 
  * `docker exec` 进入容器，修改其内容
  * `docker diff` 查看容器的具体改动
  * `docker commit` 提交容器更改的变化，可以将容器的存储层保存下来成为镜像
  * `docker history` 具体查看镜像内的历史记录
 
- ```
- docker exec -it webserver bash
+```
+# 进入 webserver 容器，获得交互式会话
+docker exec -it webserver bash
 
- docker diff webserver
+# 查看改动
+docker diff webserver
 
- docker commit --author "nickname <example@example.com>" --message "修改了默认网页" webserver nginx:v2
+# 提交改动
+docker commit --author "nickname <example@example.com>" --message "修改了默认网页" webserver nginx:v2
 
- docker history nginx:v2
- ```
+# 查看历史纪录
+docker history nginx:v2
+```
 
+[lesson2](./lesson2.md)
